@@ -1,37 +1,68 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 250 250 250;
-    --foreground: 10 10 10;
+@theme {
+  --color-whisper-dark: #0a0a0a;
+  --color-whisper-light: #fafafa;
+  --color-whisper-accent: #6366f1;
+
+  --animate-ripple: ripple 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 3s ease-in-out infinite;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 1;
   }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: 10 10 10;
-      --foreground: 250 250 250;
-    }
-  }
-
-  body {
-    @apply bg-whisper-light text-whisper-dark;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      @apply bg-whisper-dark text-whisper-light;
-    }
+  100% {
+    transform: scale(2);
+    opacity: 0;
   }
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
+  50% {
+    transform: translateY(-20px);
+  }
+}
 
-  .glow-effect {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+@keyframes glow {
+  0%, 100% {
+    opacity: 1;
   }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+:root {
+  --background: 250 250 250;
+  --foreground: 10 10 10;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 10 10 10;
+    --foreground: 250 250 250;
+  }
+}
+
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+}
+
+.text-gradient {
+  background: linear-gradient(to right, rgb(99 102 241), rgb(168 85 247), rgb(236 72 153));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
