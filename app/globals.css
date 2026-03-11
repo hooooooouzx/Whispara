@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 250 250 250;
+    --foreground: 10 10 10;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 10 10 10;
+      --foreground: 250 250 250;
+    }
+  }
+
+  body {
+    @apply bg-whisper-light text-whisper-dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      @apply bg-whisper-dark text-whisper-light;
+    }
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+}
